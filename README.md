@@ -16,6 +16,8 @@ This is a modification of the code provided by: https://github.com/sunghoon031/s
     
 [4] You will also need to calibrate the drone camera for ORB-SLAM 2. Calibration instructions available at    https://docs.opencv.org/2.4/doc/tutorials/calib3d/camera_calibration/camera_calibration.html
 
+[5] ORB-SLAM2 ROS node from https://github.com/appliedAI-Initiative/orb_slam_2_ros. Please follow the build instructions there
+
 ### - How to build (Ubuntu 16.04, ROS Kinetic):
 [1] Clone this repository first:
 ````
@@ -26,8 +28,6 @@ git clone https://github.com/SebMay99/modified_stability_scale_estimation
 cd modified_stability_scale_estimation/catkin_ws
 catkin_make
 ````
-[3] Clone and build the ORB-SLAM2 ROS node from https://github.com/appliedAI-Initiative/orb_slam_2_ros. Please follow the build instructions there
-
 ## 3. How to run
 #### Emergency land button
 The code includes a subscriber to the *chatter* topic that executes a system exit when the callback is requested.
