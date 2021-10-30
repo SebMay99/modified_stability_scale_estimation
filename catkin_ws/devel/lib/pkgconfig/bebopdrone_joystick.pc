@@ -1,8 +1,0 @@
-prefix=/home/sebastian/stability_scale/catkin_ws/devel
-
-Name: bebopdrone_joystick
-Description: Description of bebopdrone_joystick
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

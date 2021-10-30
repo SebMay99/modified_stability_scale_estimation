@@ -1,2 +1,0 @@
-ardrone_joystick:dynamic_reconfig
--DCATKIN_DEVEL_PREFIX=/home/sebastian/stability_scale/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/sebastian/stability_scale/catkin_ws/install -G Unix Makefiles
