@@ -13,7 +13,8 @@ This is a modification of the code provided by: https://github.com/sunghoon031/s
 [2] If you want to run simulations, you need to install Gazebo (see http://gazebosim.org/tutorials?tut=ros_installing)
 
 [3] To run on a real Bebop 2 drone install Bebop Autonomy: https://bebop-autonomy.readthedocs.io/en/latest/
-    You will also need to calibrate its camera for ORB-SLAM 2. Calibration instruction is at          https://docs.opencv.org/2.4/doc/tutorials/calib3d/camera_calibration/camera_calibration.html
+    
+[4] You will also need to calibrate the drone camera for ORB-SLAM 2. Calibration instructions available at    https://docs.opencv.org/2.4/doc/tutorials/calib3d/camera_calibration/camera_calibration.html
 
 ### - How to build (Ubuntu 16.04, ROS Kinetic):
 [1] Clone this repository first:
