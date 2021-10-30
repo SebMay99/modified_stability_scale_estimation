@@ -97,6 +97,6 @@ rosrun bebopdrone_joystick bebopdrone_teleop
 - When the drone is on the ground, press RB to set the SLAM ground level.
 - Press A for take off.
 - Press LB to turn on the Autopilot: 
--    A "True scale" value will be computed based only from SLAM, this value is useful as a reference.
--    The drone will slowly begin to oscillate verticaly. Due to this movement, it will also begin to drift away in the X and Y axes but the PID should compensate      with soft corrections.
--    After some seconds, a "Pseudo-scale" value will be printed as a result of the determined K gain value and alpha. This value should be close to the previously      "True scale" value.
+--   A "True scale" value will be computed based only from SLAM, this value is useful as a reference.
+--  The drone will slowly begin to oscillate verticaly. Due to this movement, it will also begin to drift away in the X and Y axes but the PID should compensate      with soft corrections.
+--    After some seconds, a "Pseudo-scale" value will be printed as a result of the determined K gain value and alpha. This value should be close to the previously      "True scale" value.
