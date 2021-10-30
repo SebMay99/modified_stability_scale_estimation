@@ -1,0 +1,29 @@
+\subsubsection usage Usage
+\verbatim
+<node name="dynamic_reconfig" pkg="dynamic_reconfig" type="dynamic_reconfig">
+  <param name="gain" type="double" value="80.0" />
+  <param name="time_window" type="double" value="1500.0" />
+  <param name="resonance_period" type="int" value="1500" />
+  <param name="wma_size" type="int" value="2500" />
+  <param name="yaw_p_gain" type="double" value="0.02" />
+  <param name="yaw_d_gain" type="double" value="0.04" />
+  <param name="gain_p_number" type="double" value="5.0" />
+  <param name="gain_p_exp" type="int" value="-2" />
+  <param name="joystick_scale" type="double" value="0.3" />
+  <param name="dynamic_scale" type="double" value="1.0" />
+  <param name="left_and_right_distance" type="double" value="3.0" />
+  <param name="yaw_p_number_js" type="double" value="3.0" />
+  <param name="yaw_p_exp_js" type="int" value="0" />
+  <param name="yaw_d_number_js" type="double" value="0.0" />
+  <param name="yaw_d_exp_js" type="int" value="0" />
+  <param name="z_p_number_js" type="double" value="3.5" />
+  <param name="z_p_exp_js" type="int" value="0" />
+  <param name="z_d_number_js" type="double" value="0.0" />
+  <param name="z_d_exp_js" type="int" value="0" />
+  <param name="xy_p_number_js" type="double" value="2.0" />
+  <param name="xy_p_exp_js" type="int" value="0" />
+  <param name="xy_d_number_js" type="double" value="2.0" />
+  <param name="xy_d_exp_js" type="int" value="-1" />
+</node>
+\endverbatim
+
