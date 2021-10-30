@@ -26,8 +26,7 @@ catkin_make
 ````
 [3] Clone and build the ORB-SLAM2 ROS node from https://github.com/appliedAI-Initiative/orb_slam_2_ros. Please follow the build instructions there
 
-### - How to run:
-
+## 3. How to run
 #### Emergency land button
 The code includes a subscriber to the *chatter* topic that executes a system exit when the callback is requested.
 
