@@ -13,24 +13,27 @@
 
 [3] If you want to run on a real AR drone 2.0, you need to calibrate its camera. An example is provided in `ORB_SLAM2/Examples/Monocular/ardrone_calib.yaml`. You can use this file, but I recommend that you do your own calibration to make sure. Calibration instruction is at https://docs.opencv.org/2.4/doc/tutorials/calib3d/camera_calibration/camera_calibration.html
 
-### - How to build (Ubuntu 14.04, ROS Indigo):
+### - How to build (Ubuntu 16.04, ROS Kinetic):
 [1] Clone this repository first:
 ````
-git clone https://github.com/sunghoon031/stability_scale.git
+git clone https://github.com/SebMay99/modified_stability_scale_estimation
 ````
-[2] Clone the AR.Drone ROS driver repository in `catkin_ws/src` directory, and build:
+[2] Build:
 ````
-cd stability_scale/catkin_ws/src
-git clone https://github.com/sunghoon031/ardrone_autonomy.git -b indigo-devel
-cd ..
-rosdep install --from-paths src --ignore-src --rosdistro indigo -y
+cd modified_stability_scale_estimation/catkin_ws
 catkin_make
 ````
-[3] Clone and build the ORB-SLAM2 from https://github.com/sunghoon031/ORB_SLAM2.git. Please follow the build instructions there
+[3] Clone and build the ORB-SLAM2 ROS node from https://github.com/appliedAI-Initiative/orb_slam_2_ros. Please follow the build instructions there
 
 ### - How to run:
+
+##### 1.Launch Bebop Autonomy driver
+Connect to the drone
+````
+roslaunch bebop_driver bebop_node.launch
+````
 ##### 1. Specify the mode
-Take a look at the setting file `stability_scale/catkin_ws/src/tum_simulator/cvg_sim_gazebo/seong_param.yaml`
+Take a look at the setting file `modified_stability_scale/catkin_ws/src/bebopdrone_joystick/seong_param.yaml`
 
 You need to specify the `test_mode` to choose between:
 
@@ -42,54 +45,45 @@ You need to specify the `test_mode` to choose between:
 ````
 rosparam set joy_node/dev "/dev/input/js0" 
 rosrun joy joy_node
-
-- For Gazebo simulation:
-cd ~/stability_scale/catkin_ws && source devel/setup.bash
-rosrun ardrone_joystick ardrone_teleop
-
-- For real AR drone.
-rosparam load ~/stability_scale/catkin_ws/src/tum_simulator/cvg_sim_gazebo/seong_param.yaml /seong_ns
-cd ~/stability_scale/catkin_ws && source devel/setup.bash 
-rosrun ardrone_joystick ardrone_teleop
 ````
-
 ##### 3. [Optional] Start dynamic_reconfigure:
 ````
-cd ~/stability_scale/catkin_ws && source devel/setup.bash
+cd ~/modified_stability_scale/catkin_ws && source devel/setup.bash
 rosrun dynamic_reconfig dynamic_reconfig_node 
 rosrun rqt_reconfigure rqt_reconfigure
 ````
 
 ##### 4. Run ORB-SLAM2
-Note that the monocular node subscribes to a topic `/camera/image_raw` to run node ORB_SLAM2/Mono. So you need to relay the rostopic 
+Note that the monocular node subscribes to a topic `/camera/image_raw` to run node ORB_SLAM2/Mono. So you need to relay to your camera topic
 ````
-rosrun topic_tools relay ardrone/front/image_raw camera/image_raw
+- Launch ORB-SLAM 2 Mono:
+roslaunch orb_slam2_ros camera_mono.launch
 
-- For Gazebo simulation:
-cd ~/ORB_SLAM2 && rosrun ORB_SLAM2 Mono Vocabulary/ORBvoc.txt Examples/Monocular/gazebo_calib.yaml 
+- Visualize ORB SLAM 2 debug image
+rosrun image_view image_view image:=/orb_slam2_mono/debug_image
 
-- For real AR drone. You may want to change the calib.yaml to your own calibration file:
-cd ~/ORB_SLAM2 && rosrun ORB_SLAM2 Mono Vocabulary/ORBvoc.txt Examples/Monocular/ardrone_calib.yaml
+- For you may want to change the calib.yaml to your own calibration file:
+cd ~/orb_slam_2_ros/orb_slam2/config/bebo2.yaml
 ````
-
 ##### 5. Run the system:
 ````        
-- For Gazebo simulation:
-cd ~/stability_scale/catkin_ws && source devel/setup.bash 
-roslaunch cvg_sim_gazebo brick_wall.launch 
- 	
-- For real AR drone. (200Hz real-time update):
-cd ~/stability_scale/catkin_ws && source devel/setup.bash 
-rosrun ardrone_autonomy ardrone_driver _realtime_navdata:=False _navdata_demo:=0
+- For Bebop 2 drone.
+rosparam load ~/modified_stability_scale/catkin_ws/src/bebopdrone_joystick/seong_param.yaml /seong_ns
+cd ~/modified_stability_scale/catkin_ws && source devel/setup.bash 
+rosrun bebopdrone_joystick bebopdrone_teleop
 ````
 
 ##### 6. Using the joystick:
-- Take off: Button 3
-- Land: Button 4
-- Start/Stop the adaptive scale estimation: Button 7
-- Set the current position as the ground level: Button 8
-- Write the scale estimation results to a file: Button 9
-- Set the current position as the reference (for scalefree navigation): Button 10
-- Increase alpha parameter (only for vertical/horizontal waypoint flight): Button 11
-- Decrease alpha parameter (only for vertical/horizontal waypoint flight): Button 12
+- Horizontal movement: Left stick
+- Rotate: Right stick (left to right)
+- Vertical movement: Right stick (up to down)
+- Take off: Button A
+- Land: Button B
+- Emergency-state: Button X CAUTION: Turns off the drone propellers, it will not land the drone softly
+- Start/Stop the adaptive scale estimation: Button LB
+- Set the current position as the ground level: Button RB
+- Write the scale estimation results to a file: Button BACK
+- Set the current position as the reference (for scalefree navigation): Button SELECT
+- Increase alpha parameter (only for vertical/horizontal waypoint flight): Button XBOX
+- Decrease alpha parameter (only for vertical/horizontal waypoint flight): Button LZ
 
