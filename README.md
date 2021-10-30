@@ -7,11 +7,11 @@
 
 ## 2. Source code
 ### - Prerequisites:
-[1] Logitech Extreme 3D Pro joystick. Calibration instruction is available at https://wiki.paparazziuav.org/wiki/Joystick#Joystick_Calibration
+[1] USB Joystick. Calibration instruction is available at https://wiki.paparazziuav.org/wiki/Joystick#Joystick_Calibration
 
 [2] If you want to run simulations, you need to install Gazebo (see http://gazebosim.org/tutorials?tut=ros_installing)
 
-[3] If you want to run on a real AR drone 2.0, you need to calibrate its camera. An example is provided in `ORB_SLAM2/Examples/Monocular/ardrone_calib.yaml`. You can use this file, but I recommend that you do your own calibration to make sure. Calibration instruction is at https://docs.opencv.org/2.4/doc/tutorials/calib3d/camera_calibration/camera_calibration.html
+[3] To run on a real Bebop 2 drone, you need to calibrate its camera. Calibration instruction is at https://docs.opencv.org/2.4/doc/tutorials/calib3d/camera_calibration/camera_calibration.html
 
 ### - How to build (Ubuntu 16.04, ROS Kinetic):
 [1] Clone this repository first:
@@ -41,6 +41,8 @@ You need to specify the `test_mode` to choose between:
 - Velocity control using thrust (test_mode 1-2) or Height control using velocity commands (test mode 3-12)
 - Please look at `seong_param.yaml` for more details.
 
+For Autopilot hovering and scale estimation the default mode is 8.
+
 ##### 2. Start joystick:
 ````
 rosparam set joy_node/dev "/dev/input/js0" 
@@ -66,9 +68,12 @@ rosrun image_view image_view image:=/orb_slam2_mono/debug_image
 cd ~/orb_slam_2_ros/orb_slam2/config/bebo2.yaml
 ````
 ##### 5. Run the system:
+- For Bebop 2 drone. Load ROS parameters, in this file the PID can be tunned as well as the alpha value:
 ````        
-- For Bebop 2 drone.
 rosparam load ~/modified_stability_scale/catkin_ws/src/bebopdrone_joystick/seong_param.yaml /seong_ns
+````
+Source and run the code:
+````
 cd ~/modified_stability_scale/catkin_ws && source devel/setup.bash 
 rosrun bebopdrone_joystick bebopdrone_teleop
 ````
@@ -87,3 +92,11 @@ rosrun bebopdrone_joystick bebopdrone_teleop
 - Increase alpha parameter (only for vertical/horizontal waypoint flight): Button XBOX
 - Decrease alpha parameter (only for vertical/horizontal waypoint flight): Button LZ
 
+##### 7. Scale estimation:
+- Make sure ORB-SLAM 2 is running and is already producing a pose estimate.
+- When the drone is on the ground, press RB to set the SLAM ground level.
+- Press A for take off.
+- Press LB to turn on the Autopilot: 
+-    A "True scale" value will be computed based only from SLAM, this value is useful as a reference.
+-    The drone will slowly begin to oscillate verticaly. Due to this movement, it will also begin to drift away in the X and Y axes but the PID should compensate      with soft corrections.
+-    After some seconds, a "Pseudo-scale" value will be printed as a result of the determined K gain value and alpha. This value should be close to the previously      "True scale" value.
