@@ -113,7 +113,7 @@ Then when the drone is on the ground follow these steps:
 - Press RB to set the SLAM ground level.
 - Press A for take off.
 
-You can manually adjust the drone position prior to running the estimation, but the drone height should be aproximatly of 1 meter for a better `True scale` estimation. Once the drone is on the desired position and orientation:
+You can manually adjust the drone position prior to running the estimation, but the drone height should be approximately of 1 meter for a better `True scale` estimation. Once the drone is on the desired position and orientation:
 - Press LB to turn on the Autopilot
 
 A `True scale` value will be computed based only from SLAM, this value is useful as a reference.The drone will slowly begin to oscillate verticaly. Due to this movement, it will also begin to drift away in the X and Y axes but the PID should compensate with soft corrections. After some seconds, a `Pseudo-scale` value will be printed as a result of the determined `K critical gain` value and `alpha`. This value should be close to the previously `True scale` value.
