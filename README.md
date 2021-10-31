@@ -81,7 +81,7 @@ rosrun image_view image_view image:=/orb_slam2_mono/debug_image
 cd ~/orb_slam_2_ros/orb_slam2/config/[your_calibration_file].yaml
 ````
 ##### 6. Run the system:
-- For Bebop 2 drone. Load ROS parameters, in this file the PID can be tunned as well as the `alpha` value:
+Load ROS parameters, in this file the PID can be tunned as well as the `alpha` value:
 ````        
 rosparam load ~/modified_stability_scale/catkin_ws/src/bebopdrone_joystick/seong_param.yaml /seong_ns
 ````
@@ -92,6 +92,7 @@ rosrun bebopdrone_joystick bebopdrone_teleop
 ````
 
 ##### 7. Using the joystick:
+The buttons can be checked and modified in the `bebopdrone_joystick.cpp` file. The default buttons for an XBOX 360 controller are:
 - Horizontal movement: Left stick
 - Rotate: Right stick (left to right)
 - Vertical movement: Right stick (up to down)
