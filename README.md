@@ -81,7 +81,7 @@ rosrun image_view image_view image:=/orb_slam2_mono/debug_image
 cd ~/orb_slam_2_ros/orb_slam2/config/bebo2.yaml
 ````
 ##### 6. Run the system:
-- For Bebop 2 drone. Load ROS parameters, in this file the PID can be tunned as well as the alpha value:
+- For Bebop 2 drone. Load ROS parameters, in this file the PID can be tunned as well as the `alpha` value:
 ````        
 rosparam load ~/modified_stability_scale/catkin_ws/src/bebopdrone_joystick/seong_param.yaml /seong_ns
 ````
