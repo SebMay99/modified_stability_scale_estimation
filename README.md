@@ -37,15 +37,15 @@ cd modified_stability_scale_estimation/catkin_ws
 catkin_make
 ````
 ## 3. How to run
-#### External emergency button
+### External emergency button
 The code includes a subscriber to the `chatter` topic that executes a system exit when the callback is requested. It is recommended to include an independent emergency button to stop the code to prevent an accident.
 
-##### 1. Launch Bebop Autonomy driver
+### 1. Launch Bebop Autonomy driver
 Connect to the drone
 ````
 roslaunch bebop_driver bebop_node.launch
 ````
-##### 2. Specify the mode
+### 2. Specify the mode
 Take a look at the setting file `modified_stability_scale/catkin_ws/src/bebopdrone_joystick/seong_param.yaml`
 
 You need to specify the `test_mode` to choose between:
@@ -56,19 +56,19 @@ You need to specify the `test_mode` to choose between:
 
 For Autopilot hovering and scale estimation the default mode is 8.
 
-##### 3. Start joystick:
+### 3. Start joystick:
 ````
 rosparam set joy_node/dev "/dev/input/js0" 
 rosrun joy joy_node
 ````
-##### 4. [Optional] Start dynamic_reconfigure:
+### 4. [Optional] Start dynamic_reconfigure:
 ````
 cd ~/modified_stability_scale/catkin_ws && source devel/setup.bash
 rosrun dynamic_reconfig dynamic_reconfig_node 
 rosrun rqt_reconfigure rqt_reconfigure
 ````
 
-##### 5. Run ORB-SLAM2
+### 5. Run ORB-SLAM2
 Note that the monocular node subscribes to a topic `/camera/image_raw` to run node ORB_SLAM2/Mono. So you need to relay to your camera topic
 ````
 - Launch ORB-SLAM 2 Mono:
@@ -80,7 +80,7 @@ rosrun image_view image_view image:=/orb_slam2_mono/debug_image
 - You may want to change the calib.yaml to your own calibration file:
 cd ~/orb_slam_2_ros/orb_slam2/config/[your_calibration_file].yaml
 ````
-##### 6. Run the system:
+### 6. Run the system:
 Load ROS parameters, in this file the PID can be tunned as well as the `alpha` value:
 ````        
 rosparam load ~/modified_stability_scale/catkin_ws/src/bebopdrone_joystick/seong_param.yaml /seong_ns
@@ -91,7 +91,7 @@ cd ~/modified_stability_scale/catkin_ws && source devel/setup.bash
 rosrun bebopdrone_joystick bebopdrone_teleop
 ````
 
-##### 7. Using the joystick:
+### 7. Using the joystick:
 The buttons can be checked and modified in the `bebopdrone_joystick.cpp` file. The default buttons for an XBOX 360 controller are:
 - Horizontal movement: Left stick
 - Rotate: Right stick (left to right)
@@ -106,7 +106,7 @@ The buttons can be checked and modified in the `bebopdrone_joystick.cpp` file. T
 - Increase alpha parameter (only for vertical/horizontal waypoint flight): Button XBOX
 - Decrease alpha parameter (only for vertical/horizontal waypoint flight): Button LZ
 
-##### 8. Scale estimation:
+### 8. Scale estimation:
 Make sure ORB-SLAM 2 is running and is already producing a pose estimate. You can check how the pose Z position values change to determine if the SLAM system had a correct initialization.
 
 Then when the drone is on the ground follow these steps: 
