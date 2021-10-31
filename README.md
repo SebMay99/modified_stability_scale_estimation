@@ -72,13 +72,13 @@ rosrun rqt_reconfigure rqt_reconfigure
 Note that the monocular node subscribes to a topic `/camera/image_raw` to run node ORB_SLAM2/Mono. So you need to relay to your camera topic
 ````
 - Launch ORB-SLAM 2 Mono:
-roslaunch orb_slam2_ros camera_mono.launch
+roslaunch orb_slam2_ros [your_launch_file].launch
 
 - Visualize ORB SLAM 2 debug image
 rosrun image_view image_view image:=/orb_slam2_mono/debug_image
 
-- For you may want to change the calib.yaml to your own calibration file:
-cd ~/orb_slam_2_ros/orb_slam2/config/bebo2.yaml
+- You may want to change the calib.yaml to your own calibration file:
+cd ~/orb_slam_2_ros/orb_slam2/config/[your_calibration_file].yaml
 ````
 ##### 6. Run the system:
 - For Bebop 2 drone. Load ROS parameters, in this file the PID can be tunned as well as the `alpha` value:
