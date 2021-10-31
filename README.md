@@ -37,8 +37,8 @@ cd modified_stability_scale_estimation/catkin_ws
 catkin_make
 ````
 ## 3. How to run
-#### Emergency land button
-The code includes a subscriber to the *chatter* topic that executes a system exit when the callback is requested.
+#### External emergency button
+The code includes a subscriber to the `chatter` topic that executes a system exit when the callback is requested. It is recommended to include an independent emergency button to stop the code to prevent an accident.
 
 ##### 1. Launch Bebop Autonomy driver
 Connect to the drone
@@ -106,7 +106,7 @@ rosrun bebopdrone_joystick bebopdrone_teleop
 - Decrease alpha parameter (only for vertical/horizontal waypoint flight): Button LZ
 
 ##### 8. Scale estimation:
-Make sure ORB-SLAM 2 is running and is already producing a pose estimate. You can check how the Pose Z position values change to determine if the SLAM system had a correct initialization.
+Make sure ORB-SLAM 2 is running and is already producing a pose estimate. You can check how the pose Z position values change to determine if the SLAM system had a correct initialization.
 
 Then when the drone is on the ground follow these steps: 
 - Press RB to set the SLAM ground level.
@@ -115,6 +115,6 @@ Then when the drone is on the ground follow these steps:
 You can manually adjust the drone position prior to running the estimation. Once the drone is on the desired position and orientation:
 - Press LB to turn on the Autopilot
 
-A "True scale" value will be computed based only from SLAM, this value is useful as a reference.The drone will slowly begin to oscillate verticaly. Due to this movement, it will also begin to drift away in the X and Y axes but the PID should compensate with soft corrections. After some seconds, a "Pseudo-scale" value will be printed as a result of the determined K gain value and alpha. This value should be close to the previously "True scale" value.
+A `True scale` value will be computed based only from SLAM, this value is useful as a reference.The drone will slowly begin to oscillate verticaly. Due to this movement, it will also begin to drift away in the X and Y axes but the PID should compensate with soft corrections. After some seconds, a `Pseudo-scale` value will be printed as a result of the determined `K critical gain` value and `alpha`. This value should be close to the previously `True scale` value.
 
-Note: If the LB button is pressed again the Autopilot will turn off and manual control will be posible. When the autopilot is on, the land button may not work as intended, so an "Emergency Land" Button is highly recommended.
+Note: If the LB button is pressed again the Autopilot will turn off and manual control will be posible. When the autopilot is on, the land button may not work as intended, so the External emergency button is highly recommended.
