@@ -1,5 +1,12 @@
 # Stability-based Scale Estimation for Monocular SLAM
-This is a modification of the code provided by: https://github.com/sunghoon031/stability_scale. The paper from which the implementation is based can be found in: https://ieeexplore.ieee.org/document/8246525
+This is a modification of the code provided by: https://github.com/sunghoon031/stability_scale. List of changes:
+- Ubuntu 16.04 and ROS Kinetic tested.
+- Bebop Autonomy driver integration
+- Fixed pose extraction from ORB-SLAM 2
+- Fixed Autopilot PID
+
+The paper from which the implementation is based can be found in: https://ieeexplore.ieee.org/document/8246525
+S. H. Lee and G. de Croon, "Stability-Based Scale Estimation for Monocular SLAM," in IEEE Robotics and Automation Letters, vol. 3, no. 2, pp. 780-787, April 2018, doi: 10.1109/LRA.2018.2789841.
 
 ## 1. Supplementary materials for the paper
 [1] First, read `supplementary_materials/Supplementary_Material.pdf` for the full derivations ommited in the paper.
